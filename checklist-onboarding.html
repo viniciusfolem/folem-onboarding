@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Programa de Aceleracao - Folem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --bg-input: #252525;
+            --bg-card-hover: #222222;
+            --orange-primary: #F5A623;
+            --orange-light: #FFB84D;
+            --orange-dark: #D4850C;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-300: #a0a0a0;
+            --gray-500: #6b6b6b;
+            --gray-700: #3a3a3a;
+            --success: #22c55e;
+            --error: #ef4444;
+            --gradient-orange: linear-gradient(135deg, #F5A623 0%, #FF6B35 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--white);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, rgba(245, 166, 35, 0.1) 0%, transparent 100%);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .logo-text {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        .logo-f { color: var(--white); }
+        .logo-o {
+            color: var(--orange-primary);
+            position: relative;
+            display: inline-block;
+        }
+        .logo-o::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            border: 3px solid var(--orange-primary);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+        }
+        .logo-lem { color: var(--white); }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gray-100);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--gray-300);
+            font-size: 16px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto 12px;
+        }
+
+        .progress-text {
+            font-weight: 600;
+            color: var(--orange-primary);
+        }
+
+        .progress-count {
+            color: var(--gray-300);
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            max-width: 900px;
+            margin: 0 auto;
+            height: 8px;
+            background: var(--gray-700);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-orange);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 40px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--gray-700);
+            transition: border-color 0.3s ease;
+        }
+
+        .section:hover {
+            border-color: var(--orange-primary);
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, rgba(245, 166, 35, 0.15) 0%, transparent 100%);
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid var(--gray-700);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(90deg, rgba(245, 166, 35, 0.25) 0%, transparent 100%);
+        }
+
+        .section-number {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-orange);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--bg-dark);
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            flex: 1;
+        }
+
+        .section-title h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .section-title span {
+            font-size: 13px;
+            color: var(--gray-300);
+        }
+
+        .section-toggle {
+            width: 32px;
+            height: 32px;
+            background: var(--gray-700);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .section-toggle svg {
+            width: 16px;
+            height: 16px;
+            color: var(--gray-300);
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .section-toggle svg {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            padding: 20px;
+            max-height: 5000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+        }
+
+        .section.collapsed .section-content {
+            max-height: 0;
+            padding: 0 20px;
+        }
+
+        /* Form Field */
+        .form-field {
+            margin-bottom: 24px;
+            padding: 20px;
+            background: var(--bg-card-hover);
+            border-radius: 12px;
+            border: 1px solid var(--gray-700);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-field:hover {
+            border-color: var(--gray-500);
+        }
+
+        .form-field:focus-within {
+            border-color: var(--orange-primary);
+        }
+
+        .field-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .field-number {
+            background: var(--orange-primary);
+            color: var(--bg-dark);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+
+        .field-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-100);
+            flex: 1;
+        }
+
+        .field-hint {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .field-required {
+            color: var(--error);
+            margin-left: 4px;
+        }
+
+        /* Text Input */
+        .text-input {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 15px;
+            color: var(--white);
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--orange-primary);
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+        }
+
+        .text-input::placeholder {
+            color: var(--gray-500);
+        }
+
+        /* Textarea */
+        .textarea {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 15px;
+            color: var(--white);
+            font-family: inherit;
+            min-height: 100px;
+            resize: vertical;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: var(--orange-primary);
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+        }
+
+        .textarea::placeholder {
+            color: var(--gray-500);
+        }
+
+        /* Checkbox Group */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--orange-primary);
+            background: rgba(245, 166, 35, 0.05);
+        }
+
+        .checkbox-item.selected {
+            border-color: var(--orange-primary);
+            background: rgba(245, 166, 35, 0.15);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gray-500);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item.selected .checkbox-custom {
+            background: var(--orange-primary);
+            border-color: var(--orange-primary);
+        }
+
+        .checkbox-custom svg {
+            width: 12px;
+            height: 12px;
+            color: var(--bg-dark);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item.selected .checkbox-custom svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--gray-100);
+        }
+
+        /* Radio Group */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--gray-700);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .radio-item:hover {
+            border-color: var(--orange-primary);
+            background: rgba(245, 166, 35, 0.05);
+        }
+
+        .radio-item.selected {
+            border-color: var(--orange-primary);
+            background: rgba(245, 166, 35, 0.15);
+        }
+
+        .radio-item input[type="radio"] {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gray-500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .radio-item.selected .radio-custom {
+            border-color: var(--orange-primary);
+        }
+
+        .radio-custom::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--orange-primary);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+
+        .radio-item.selected .radio-custom::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .radio-label {
+            font-size: 14px;
+            color: var(--gray-100);
+        }
+
+        /* Subsection Title */
+        .subsection-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--orange-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--orange-primary);
+            display: inline-block;
+        }
+
+        .subsection-title:first-child {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--gray-700);
+            background: linear-gradient(0deg, rgba(245, 166, 35, 0.05) 0%, transparent 100%);
+        }
+
+        .footer-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--orange-primary);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-300);
+            margin-top: 4px;
+        }
+
+        .footer p {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .footer-brand {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* Submit Button */
+        .submit-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .submit-btn {
+            background: var(--gradient-orange);
+            color: var(--bg-dark);
+            border: none;
+            padding: 18px 60px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(245, 166, 35, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 166, 35, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Actions */
+        .actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .action-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .action-btn.primary {
+            background: var(--gradient-orange);
+            color: var(--bg-dark);
+        }
+
+        .action-btn.secondary {
+            background: var(--bg-card);
+            color: var(--white);
+            border: 1px solid var(--gray-700);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 166, 35, 0.3);
+        }
+
+        .action-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-card);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-700);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            border-color: var(--success);
+        }
+
+        .toast.error {
+            border-color: var(--error);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .logo-text {
+                font-size: 36px;
+            }
+
+            .section-header {
+                padding: 18px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 17px;
+            }
+
+            .footer-stats {
+                gap: 30px;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
+
+            .actions {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .checkbox-group, .radio-group {
+                flex-direction: column;
+            }
+
+            .checkbox-item, .radio-item {
+                width: 100%;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--bg-dark);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Print Styles */
+        @media print {
+            .bg-stars, .progress-container, .actions {
+                display: none;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Stars Background -->
+    <div class="bg-stars" id="stars"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-text">
+                <span class="logo-f">F</span><span class="logo-o">O</span><span class="logo-lem">LEM</span>
+            </div>
+        </div>
+        <h1>Onboarding Programa de Aceleracao</h1>
+        <p>Formulario completo com 62 perguntas estrategicas em 13 secoes</p>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-info">
+            <span class="progress-text">Progresso do Preenchimento</span>
+            <span class="progress-count"><span id="completed">0</span> de <span id="total">62</span> campos</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <form id="onboardingForm">
+
+            <!-- Section 1: Perfil do Negocio -->
+            <div class="section" data-section="1">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">01</div>
+                    <div class="section-title">
+                        <h2>Perfil do Negocio</h2>
+                        <span>Identificacao e Numeros Atuais</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="subsection-title">Identificacao</div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">01</span>
+                            <label class="field-label">Nome completo / Razao social<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="nome_razao_social" placeholder="Digite seu nome completo ou razao social" required data-field="1">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">02</span>
+                            <label class="field-label">Nome do produto/infoproduto principal<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="nome_produto" placeholder="Ex: Curso de Marketing Digital" required data-field="2">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">03</span>
+                            <label class="field-label">Nicho/Mercado<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="nicho_mercado" placeholder="Ex: Emagrecimento, Financas, Relacionamentos..." required data-field="3">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">04</span>
+                            <label class="field-label">Tipo de infoproduto (marque todas que se aplicam)<span class="field-required">*</span></label>
+                        </div>
+                        <div class="checkbox-group" data-field="4">
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="curso_gravado">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Curso online gravado</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="curso_vivo">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Curso ao vivo</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="mentoria_grupo">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Mentoria em grupo</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="mentoria_individual">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Mentoria individual</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="comunidade">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Comunidade/Membership</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="ebook">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">E-book</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="software">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Software/Plataforma</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="tipo_infoproduto" value="outro">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Outro</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">05</span>
+                            <label class="field-label">Ha quanto tempo o negocio existe?<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="tempo_negocio" placeholder="Ex: 2 anos, 6 meses..." required data-field="5">
+                    </div>
+
+                    <div class="subsection-title">Numeros Atuais</div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">06</span>
+                            <label class="field-label">Faturamento mensal medio (ultimos 3 meses)<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="faturamento_mensal" placeholder="Ex: R$ 50.000" required data-field="6">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">07</span>
+                            <label class="field-label">Total de clientes ativos<span class="field-required">*</span></label>
+                        </div>
+                        <input type="number" class="text-input" name="clientes_ativos" placeholder="Ex: 500" required data-field="7">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">08</span>
+                            <label class="field-label">Ticket medio do produto principal<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="ticket_medio" placeholder="Ex: R$ 997" required data-field="8">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">09</span>
+                            <label class="field-label">Taxa de conversao atual (visitantes para compradores)</label>
+                        </div>
+                        <input type="text" class="text-input" name="taxa_conversao" placeholder="Ex: 2.5% (se souber)" data-field="9">
+                        <div class="field-hint">Se souber</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">10</span>
+                            <label class="field-label">Tamanho da base de leads (email/WhatsApp)<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="base_leads" placeholder="Ex: 15.000 contatos" required data-field="10">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">11</span>
+                            <label class="field-label">Meta de faturamento nos proximos 12 meses<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="meta_faturamento" placeholder="Ex: R$ 1.000.000" required data-field="11">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Problema e Solucao -->
+            <div class="section" data-section="2">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">02</div>
+                    <div class="section-title">
+                        <h2>Problema e Solucao</h2>
+                        <span>Entendendo a dor do cliente</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">12</span>
+                            <label class="field-label">Qual e o problema PRINCIPAL que seu infoproduto resolve?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="problema_principal" placeholder="Descreva detalhadamente o problema que voce resolve..." required data-field="12"></textarea>
+                        <div class="field-hint">Seja especifico. Quanto mais claro o problema, mais facil vender a solucao.</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">13</span>
+                            <label class="field-label">Como as pessoas tentam resolver esse problema HOJE (sem voce)?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="solucoes_atuais" placeholder="Descreva as alternativas que as pessoas usam atualmente..." required data-field="13"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">14</span>
+                            <label class="field-label">Por que esses metodos atuais FALHAM?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="porque_falham" placeholder="Explique as limitacoes das solucoes existentes..." required data-field="14"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">15</span>
+                            <label class="field-label">Qual e o seu MECANISMO UNICO? (O que faz seu metodo funcionar melhor?)<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="mecanismo_unico" placeholder="Descreva seu diferencial, metodologia exclusiva, framework proprietario..." required data-field="15"></textarea>
+                        <div class="field-hint">Exemplo: framework proprietario, metodologia exclusiva, tecnologia diferenciada, etc.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Transformacao e Resultados -->
+            <div class="section" data-section="3">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">03</div>
+                    <div class="section-title">
+                        <h2>Transformacao e Resultados</h2>
+                        <span>O que voce entrega ao cliente</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">16</span>
+                            <label class="field-label">Qual e a PRINCIPAL transformacao/resultado que voce entrega?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="transformacao_principal" placeholder="Descreva a transformacao principal que seu cliente experimenta..." required data-field="16"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">17</span>
+                            <label class="field-label">Liste 3-5 beneficios secundarios<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="beneficios_secundarios" placeholder="1. &#10;2. &#10;3. &#10;4. &#10;5. " required data-field="17"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">18</span>
+                            <label class="field-label">Como a VIDA da pessoa muda especificamente apos usar seu produto?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="mudanca_vida" placeholder="Descreva as mudancas na rotina, emocoes, relacionamentos, financas, status..." required data-field="18"></textarea>
+                        <div class="field-hint">Pense em: rotina, emocoes, relacionamentos, financas, status, etc.</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">19</span>
+                            <label class="field-label">Primeiros resultados (24-48 horas)<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="resultados_imediatos" placeholder="O que o cliente pode esperar nas primeiras 24-48 horas..." required data-field="19"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">20</span>
+                            <label class="field-label">Resultados de medio prazo (1-4 semanas)<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="resultados_medio_prazo" placeholder="O que o cliente pode esperar em 1-4 semanas..." required data-field="20"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">21</span>
+                            <label class="field-label">Resultados de longo prazo (1+ meses)<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="resultados_longo_prazo" placeholder="O que o cliente pode esperar apos 1 mes ou mais..." required data-field="21"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Prova Social e Autoridade -->
+            <div class="section" data-section="4">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">04</div>
+                    <div class="section-title">
+                        <h2>Prova Social e Autoridade</h2>
+                        <span>Credenciais e depoimentos</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">22</span>
+                            <label class="field-label">Quantas pessoas ja foram impactadas/compraram seu produto?<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="pessoas_impactadas" placeholder="Ex: 5.000 alunos" required data-field="22">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">23</span>
+                            <label class="field-label">Descreva o testemunho mais IMPACTANTE (com resultado especifico e mensuravel)<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="testemunho_impactante" placeholder="Descreva um caso de sucesso com numeros e resultados especificos..." required data-field="23"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">24</span>
+                            <label class="field-label">Qual e sua PRINCIPAL credencial/autoridade no assunto?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="credencial_principal" placeholder="Descreva sua experiencia, formacao, resultados proprios, cases..." required data-field="24"></textarea>
+                        <div class="field-hint">Anos de experiencia, resultados proprios, formacao, cases de sucesso, etc.</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">25</span>
+                            <label class="field-label">Certificacoes, premios, aparicoes na midia ou validacoes relevantes</label>
+                        </div>
+                        <textarea class="textarea" name="certificacoes_premios" placeholder="Liste certificacoes, premios, entrevistas, participacoes em eventos..." data-field="25"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Estrutura da Oferta -->
+            <div class="section" data-section="5">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">05</div>
+                    <div class="section-title">
+                        <h2>Estrutura da Oferta</h2>
+                        <span>Precos, bonus e garantias</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">26</span>
+                            <label class="field-label">Preco atual do produto principal<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="preco_produto" placeholder="Ex: R$ 1.997" required data-field="26">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">27</span>
+                            <label class="field-label">Forma de pagamento<span class="field-required">*</span></label>
+                        </div>
+                        <div class="checkbox-group" data-field="27">
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="forma_pagamento" value="a_vista">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">A vista</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="forma_pagamento" value="parcelado">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Parcelado</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="forma_pagamento" value="recorrente">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Recorrente (mensalidade)</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="forma_pagamento" value="misto">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Misto (a vista + parcelado)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">28</span>
+                            <label class="field-label">Preco de referencia ou comparacao (se houver)</label>
+                        </div>
+                        <input type="text" class="text-input" name="preco_referencia" placeholder="Ex: R$ 5.000 (valor de mercado)" data-field="28">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">29</span>
+                            <label class="field-label">O que esta INCLUIDO na oferta?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="incluido_oferta" placeholder="Liste todos os modulos, aulas, materiais, acessos..." required data-field="29"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">30</span>
+                            <label class="field-label">Bonus ou extras inclusos</label>
+                        </div>
+                        <textarea class="textarea" name="bonus_extras" placeholder="Liste todos os bonus e extras que acompanham a oferta..." data-field="30"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">31</span>
+                            <label class="field-label">Garantia oferecida (prazo e condicoes)<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="garantia" placeholder="Ex: 7 dias de garantia incondicional" required data-field="31">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">32</span>
+                            <label class="field-label">Tipo de suporte oferecido<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="tipo_suporte" placeholder="Ex: Suporte via WhatsApp, comunidade exclusiva, calls semanais..." required data-field="32">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: Funil e Trafego -->
+            <div class="section" data-section="6">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">06</div>
+                    <div class="section-title">
+                        <h2>Funil e Trafego</h2>
+                        <span>Canais de aquisicao e estrategia</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="subsection-title">Canais de Aquisicao</div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">33</span>
+                            <label class="field-label">Quais canais voce usa ATUALMENTE para atrair clientes?<span class="field-required">*</span></label>
+                        </div>
+                        <div class="checkbox-group" data-field="33">
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="instagram">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Instagram</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="facebook_ads">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Facebook/Meta Ads</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="google_ads">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Google Ads</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="youtube">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">YouTube</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="tiktok">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">TikTok</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="linkedin">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">LinkedIn</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="email_marketing">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Email marketing</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="whatsapp_telegram">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">WhatsApp/Telegram</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="afiliados">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Afiliados/Parcerias</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="canais_aquisicao" value="seo_blog">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Trafego organico (SEO/Blog)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">34</span>
+                            <label class="field-label">Qual e o seu canal MAIS EFETIVO hoje (que traz mais vendas)?<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="canal_mais_efetivo" placeholder="Ex: Instagram organico" required data-field="34">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">35</span>
+                            <label class="field-label">Investimento mensal em trafego pago (se houver)</label>
+                        </div>
+                        <input type="text" class="text-input" name="investimento_trafego" placeholder="Ex: R$ 10.000/mes" data-field="35">
+                    </div>
+
+                    <div class="subsection-title">Estrategia de Funil</div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">36</span>
+                            <label class="field-label">Descreva brevemente seu funil de vendas atual<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="funil_vendas" placeholder="Ex: Lead magnet -> Email -> Webinar -> Oferta" required data-field="36"></textarea>
+                        <div class="field-hint">Exemplo: Lead magnet -> Email -> Webinar -> Oferta / ou / Post -> DM -> Venda direta</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">37</span>
+                            <label class="field-label">Voce usa alguma isca digital (lead magnet)? Se sim, qual?</label>
+                        </div>
+                        <input type="text" class="text-input" name="lead_magnet" placeholder="Ex: E-book gratuito, aula gratis, checklist..." data-field="37">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">38</span>
+                            <label class="field-label">Voce faz lancamentos? Com que frequencia?<span class="field-required">*</span></label>
+                        </div>
+                        <input type="text" class="text-input" name="frequencia_lancamentos" placeholder="Ex: Sim, 4 vezes por ano / Nao, perpetuo" required data-field="38">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7: Operacao e Estrutura -->
+            <div class="section" data-section="7">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">07</div>
+                    <div class="section-title">
+                        <h2>Operacao e Estrutura</h2>
+                        <span>Equipe, ferramentas e processos</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">39</span>
+                            <label class="field-label">Quantas pessoas trabalham no negocio (incluindo voce)?<span class="field-required">*</span></label>
+                        </div>
+                        <input type="number" class="text-input" name="tamanho_equipe" placeholder="Ex: 5" required data-field="39">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">40</span>
+                            <label class="field-label">Principais funcoes/papeis na equipe<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="funcoes_equipe" placeholder="Ex: Gestor de trafego, social media, suporte, editor de video..." required data-field="40"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">41</span>
+                            <label class="field-label">Ferramentas e sistemas que voce usa<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="ferramentas_sistemas" placeholder="Ex: Hotmart, ActiveCampaign, Notion, Zoom..." required data-field="41"></textarea>
+                        <div class="field-hint">CRM, plataforma de curso, email marketing, checkout, automacao, etc.</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">42</span>
+                            <label class="field-label">Tempo medio que voce dedica ao negocio por semana (em horas)<span class="field-required">*</span></label>
+                        </div>
+                        <input type="number" class="text-input" name="horas_semanais" placeholder="Ex: 40" required data-field="42">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">43</span>
+                            <label class="field-label">Maior gargalo operacional atual<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="gargalo_operacional" placeholder="Descreva o principal problema operacional que voce enfrenta..." required data-field="43"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Mercado e Concorrencia -->
+            <div class="section" data-section="8">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">08</div>
+                    <div class="section-title">
+                        <h2>Mercado e Concorrencia</h2>
+                        <span>Analise competitiva</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">44</span>
+                            <label class="field-label">Principais concorrentes ou alternativas no mercado<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="concorrentes" placeholder="Liste seus principais concorrentes e alternativas..." required data-field="44"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">45</span>
+                            <label class="field-label">Seu MAIOR diferencial vs concorrencia (por que escolher VOCE?)<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="diferencial_concorrencia" placeholder="O que te torna unico e melhor que seus concorrentes..." required data-field="45"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">46</span>
+                            <label class="field-label">Erro comum que as pessoas cometem ao escolher solucoes neste nicho<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="erro_comum" placeholder="Qual o erro mais frequente que seu publico comete..." required data-field="46"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Objecoes e Barreiras -->
+            <div class="section" data-section="9">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">09</div>
+                    <div class="section-title">
+                        <h2>Objecoes e Barreiras</h2>
+                        <span>Resistencias comuns dos clientes</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">47</span>
+                            <label class="field-label">Qual e a MAIOR objecao que as pessoas tem antes de comprar?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="maior_objecao" placeholder="Ex: preco, falta de tempo, nao funciona para mim..." required data-field="47"></textarea>
+                        <div class="field-hint">Exemplos: preco, falta de tempo, nao funciona para mim, ja tentei outras coisas, etc.</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">48</span>
+                            <label class="field-label">Como voce supera essa objecao hoje?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="como_supera_objecao" placeholder="Descreva sua estrategia para contornar essa objecao..." required data-field="48"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">49</span>
+                            <label class="field-label">Quem NAO e seu cliente ideal? (Para quem seu produto NAO funciona?)<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="nao_cliente_ideal" placeholder="Descreva quem voce NAO quer como cliente..." required data-field="49"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 10: Historia e Posicionamento -->
+            <div class="section" data-section="10">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">10</div>
+                    <div class="section-title">
+                        <h2>Historia e Posicionamento</h2>
+                        <span>Sua narrativa e imagem</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">50</span>
+                            <label class="field-label">Qual e a historia pessoal por tras do produto?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="historia_pessoal" placeholder="Conte sua jornada, superacao, descoberta, motivacao para criar..." required data-field="50"></textarea>
+                        <div class="field-hint">Superacao, descoberta, motivacao para criar, ponto de virada, etc.</div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">51</span>
+                            <label class="field-label">Como voce quer ser percebido no mercado?<span class="field-required">*</span></label>
+                        </div>
+                        <div class="radio-group" data-field="51">
+                            <label class="radio-item" onclick="toggleRadio(this, 'posicionamento')">
+                                <input type="radio" name="posicionamento" value="autoridade">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">Autoridade</span>
+                            </label>
+                            <label class="radio-item" onclick="toggleRadio(this, 'posicionamento')">
+                                <input type="radio" name="posicionamento" value="mentor_proximo">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">Mentor proximo</span>
+                            </label>
+                            <label class="radio-item" onclick="toggleRadio(this, 'posicionamento')">
+                                <input type="radio" name="posicionamento" value="amigo_ajuda">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">Amigo que ajuda</span>
+                            </label>
+                            <label class="radio-item" onclick="toggleRadio(this, 'posicionamento')">
+                                <input type="radio" name="posicionamento" value="especialista_tecnico">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">Especialista tecnico</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 11: Desafios e Oportunidades -->
+            <div class="section" data-section="11">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">11</div>
+                    <div class="section-title">
+                        <h2>Desafios e Oportunidades</h2>
+                        <span>Obstaculos e potenciais de crescimento</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">52</span>
+                            <label class="field-label">Quais sao os 3 MAIORES DESAFIOS que voce enfrenta hoje no negocio?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="maiores_desafios" placeholder="1. &#10;2. &#10;3. " required data-field="52"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">53</span>
+                            <label class="field-label">Se pudesse resolver APENAS UM problema agora, qual seria?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="problema_prioridade" placeholder="Descreva o problema mais urgente..." required data-field="53"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">54</span>
+                            <label class="field-label">O que voce ja tentou fazer para crescer que NAO funcionou?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="tentativas_falhas" placeholder="Descreva estrategias que nao deram resultado..." required data-field="54"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">55</span>
+                            <label class="field-label">Qual oportunidade de crescimento voce ve mas nao consegue executar sozinho(a)?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="oportunidade_crescimento" placeholder="Descreva a oportunidade que voce identificou..." required data-field="55"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 12: Expectativas da Consultoria -->
+            <div class="section" data-section="12">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">12</div>
+                    <div class="section-title">
+                        <h2>Expectativas da Consultoria</h2>
+                        <span>Objetivos e areas de foco</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">56</span>
+                            <label class="field-label">O que voce espera alcancar com esta consultoria?<span class="field-required">*</span></label>
+                        </div>
+                        <textarea class="textarea" name="expectativa_consultoria" placeholder="Seja especifico sobre seus objetivos..." required data-field="56"></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">57</span>
+                            <label class="field-label">Em qual area voce quer mais apoio?<span class="field-required">*</span></label>
+                        </div>
+                        <div class="checkbox-group" data-field="57">
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="trafego_aquisicao">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Trafego e aquisicao</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="conversao_funil">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Conversao e funil</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="oferta_irresistivel">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Criacao de oferta irresistivel</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="copywriting">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Copywriting e persuasao</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="operacao_automacao">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Operacao e automacao</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="posicionamento_branding">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Posicionamento e branding</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="estrategia_lancamento">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Estrategia de lancamento</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="area_apoio" value="gestao_equipe">
+                                <div class="checkbox-custom">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20,6 9,17 4,12"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="checkbox-label">Gestao de equipe</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">58</span>
+                            <label class="field-label">Prazo desejado para ver resultados<span class="field-required">*</span></label>
+                        </div>
+                        <div class="radio-group" data-field="58">
+                            <label class="radio-item" onclick="toggleRadio(this, 'prazo_resultados')">
+                                <input type="radio" name="prazo_resultados" value="1_3_meses">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">1-3 meses</span>
+                            </label>
+                            <label class="radio-item" onclick="toggleRadio(this, 'prazo_resultados')">
+                                <input type="radio" name="prazo_resultados" value="3_6_meses">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">3-6 meses</span>
+                            </label>
+                            <label class="radio-item" onclick="toggleRadio(this, 'prazo_resultados')">
+                                <input type="radio" name="prazo_resultados" value="6_12_meses">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">6-12 meses</span>
+                            </label>
+                            <label class="radio-item" onclick="toggleRadio(this, 'prazo_resultados')">
+                                <input type="radio" name="prazo_resultados" value="12_mais_meses">
+                                <div class="radio-custom"></div>
+                                <span class="radio-label">12+ meses</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 13: Informacoes Adicionais -->
+            <div class="section" data-section="13">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-number">13</div>
+                    <div class="section-title">
+                        <h2>Informacoes Adicionais</h2>
+                        <span>Links e observacoes finais</span>
+                    </div>
+                    <div class="section-toggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">59</span>
+                            <label class="field-label">Site ou Pagina de vendas</label>
+                        </div>
+                        <input type="url" class="text-input" name="site_vendas" placeholder="https://..." data-field="59">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">60</span>
+                            <label class="field-label">Instagram</label>
+                        </div>
+                        <input type="text" class="text-input" name="instagram" placeholder="@seuusuario" data-field="60">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">61</span>
+                            <label class="field-label">Outro canal relevante (YouTube, LinkedIn, TikTok, etc.)</label>
+                        </div>
+                        <input type="text" class="text-input" name="outro_canal" placeholder="Link ou usuario" data-field="61">
+                    </div>
+
+                    <div class="form-field">
+                        <div class="field-header">
+                            <span class="field-number">62</span>
+                            <label class="field-label">Ha algo mais que voce gostaria de compartilhar?</label>
+                        </div>
+                        <textarea class="textarea" name="observacoes_finais" placeholder="Informacoes adicionais, duvidas, comentarios..." data-field="62"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-container">
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Enviar Formulario
+                </button>
+            </div>
+
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-stats">
+            <div class="stat-item">
+                <div class="stat-value">62</div>
+                <div class="stat-label">Perguntas Estrategicas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Secoes Organizadas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">20-30</div>
+                <div class="stat-label">Minutos Estimados</div>
+            </div>
+        </div>
+        <p>Tempo estimado de preenchimento: 20-30 minutos</p>
+        <div class="footer-brand">FOLEM</div>
+    </footer>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+        <button class="action-btn secondary" onclick="resetForm()" title="Limpar formulario">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+            </svg>
+        </button>
+        <button class="action-btn secondary" onclick="saveProgress()" title="Salvar rascunho">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17,21 17,13 7,13 7,21"/>
+                <polyline points="7,3 7,8 15,8"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ==========================================
+        // CONFIGURACAO SUPABASE
+        // ==========================================
+        const SUPABASE_URL = 'https://torigmjljedghnvtitvs.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvcmlnbWpsamVkZ2hudnRpdHZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMzAwMjIsImV4cCI6MjA4NTkwNjAyMn0._02AKqv85F8IEt5A3LTlqHyxRGikuQxeSnJC29F_z6E';
+
+        // Generate stars
+        function generateStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.width = Math.random() * 2 + 1 + 'px';
+                star.style.height = star.style.width;
+                starsContainer.appendChild(star);
+            }
+        }
+        generateStars();
+
+        // Toggle section collapse
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+        }
+
+        // Toggle checkbox
+        function toggleCheckbox(item) {
+            item.classList.toggle('selected');
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            updateProgress();
+            autoSave();
+        }
+
+        // Toggle radio
+        function toggleRadio(item, groupName) {
+            const group = item.closest('.radio-group');
+            group.querySelectorAll('.radio-item').forEach(i => i.classList.remove('selected'));
+            item.classList.add('selected');
+            item.querySelector('input[type="radio"]').checked = true;
+            updateProgress();
+            autoSave();
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const fields = document.querySelectorAll('[data-field]');
+            let filled = 0;
+
+            fields.forEach(field => {
+                if (field.classList.contains('checkbox-group') || field.classList.contains('radio-group')) {
+                    const hasSelection = field.querySelector('.selected');
+                    if (hasSelection) filled++;
+                } else if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA') {
+                    if (field.value.trim() !== '') filled++;
+                }
+            });
+
+            const total = fields.length;
+            const percentage = (filled / total) * 100;
+
+            document.getElementById('completed').textContent = filled;
+            document.getElementById('total').textContent = total;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        // Show toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type + ' show';
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Auto save to localStorage
+        function autoSave() {
+            const formData = collectFormData();
+            localStorage.setItem('folemOnboarding', JSON.stringify(formData));
+        }
+
+        // Collect form data
+        function collectFormData() {
+            const form = document.getElementById('onboardingForm');
+            const formData = new FormData(form);
+            const data = {};
+
+            // Text inputs and textareas
+            form.querySelectorAll('input[type="text"], input[type="number"], input[type="url"], textarea').forEach(input => {
+                data[input.name] = input.value;
+            });
+
+            // Checkboxes (grouped)
+            const checkboxGroups = {};
+            form.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                if (!checkboxGroups[checkbox.name]) {
+                    checkboxGroups[checkbox.name] = [];
+                }
+                checkboxGroups[checkbox.name].push(checkbox.value);
+            });
+            Object.assign(data, checkboxGroups);
+
+            // Radio buttons
+            form.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                data[radio.name] = radio.value;
+            });
+
+            data.created_at = new Date().toISOString();
+
+            return data;
+        }
+
+        // Load saved data
+        function loadSavedData() {
+            const saved = localStorage.getItem('folemOnboarding');
+            if (saved) {
+                const data = JSON.parse(saved);
+                const form = document.getElementById('onboardingForm');
+
+                // Restore text inputs
+                Object.keys(data).forEach(key => {
+                    const input = form.querySelector(`[name="${key}"]`);
+                    if (input && (input.type === 'text' || input.type === 'number' || input.type === 'url' || input.tagName === 'TEXTAREA')) {
+                        input.value = data[key] || '';
+                    }
+                });
+
+                // Restore checkboxes
+                form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    const values = data[checkbox.name];
+                    if (values && Array.isArray(values) && values.includes(checkbox.value)) {
+                        checkbox.checked = true;
+                        checkbox.closest('.checkbox-item').classList.add('selected');
+                    }
+                });
+
+                // Restore radio buttons
+                form.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    if (data[radio.name] === radio.value) {
+                        radio.checked = true;
+                        radio.closest('.radio-item').classList.add('selected');
+                    }
+                });
+
+                updateProgress();
+            }
+        }
+
+        // Save progress manually
+        function saveProgress() {
+            autoSave();
+            showToast('Rascunho salvo com sucesso!', 'success');
+        }
+
+        // Reset form
+        function resetForm() {
+            if (confirm('Tem certeza que deseja limpar todo o formulario?')) {
+                document.getElementById('onboardingForm').reset();
+                document.querySelectorAll('.checkbox-item, .radio-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                localStorage.removeItem('folemOnboarding');
+                updateProgress();
+                showToast('Formulario limpo!', 'success');
+            }
+        }
+
+        // Submit form to Supabase
+        async function submitToSupabase(data) {
+            if (SUPABASE_URL === 'SUA_URL_SUPABASE') {
+                console.log('Dados do formulario:', data);
+                showToast('Configure o Supabase para enviar os dados!', 'error');
+                return false;
+            }
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/onboarding`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    return true;
+                } else {
+                    const error = await response.json();
+                    console.error('Erro Supabase:', error);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Erro ao enviar:', error);
+                return false;
+            }
+        }
+
+        // Form submit handler
+        document.getElementById('onboardingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Enviando...';
+
+            const data = collectFormData();
+
+            const success = await submitToSupabase(data);
+
+            if (success) {
+                showToast('Formulario enviado com sucesso!', 'success');
+                localStorage.removeItem('folemOnboarding');
+            } else {
+                showToast('Erro ao enviar. Tente novamente.', 'error');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Enviar Formulario';
+        });
+
+        // Auto-save on input change
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('change', () => {
+                updateProgress();
+                autoSave();
+            });
+            input.addEventListener('input', () => {
+                updateProgress();
+            });
+        });
+
+        // Initialize
+        loadSavedData();
+        updateProgress();
+    </script>
+</body>
+</html>
